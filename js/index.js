@@ -8,6 +8,8 @@
 	$('.b-color').css({backgroundColor: randomColor});
 	$('.f-color').css({color: randomColor});
 
+	getSample(1);
+
 
 	$('.controls span').click(function(){
 		var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -38,5 +40,10 @@
 		$('#code').html('<i class="fa-spinner fa-spin"></i>');
 	});
 
+	function getSample(number){
+		$.get(domain + 'assets/sample-' + number + '.html', function(data){
+			$('#template').html(data);
+		});
+	};
 
 })();
