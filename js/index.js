@@ -1,29 +1,49 @@
 (function(){
 
 	// set random color
-	var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16),
-		domain = 'http://kublikon.github.io/junkmail/',
+	var domain = 'http://kublikon.github.io/junkmail/',
 		index = 1,
+		maxIndex = 5,
 		code = '';
 
-	$('.b-color').css({backgroundColor: randomColor});
-	$('.f-color').css({color: randomColor});
-
+	changeColor(true);
 	getSample(index);
 
-
 	$('.controls span').click(function(data){
-		var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-
 		$('.controls span').removeClass('on');
 		$('#' + data.target.id).addClass('on');
 
-		$('.b-color').animate({backgroundColor: randomColor}, 'slow');
-		$('.f-color').animate({color: randomColor}, 'slow');
+		changeColor();
 
 		index = data.target.id;
 		getSample(index);
 	});
+
+	$('.up').click(function(){
+		if(index > 1){
+			index--;
+
+			$('.controls span').removeClass('on');
+			$('#' + index).addClass('on');
+
+			changeColor();
+			getSample(index);
+		}
+	});
+
+	$('.down').click(function(){
+		if(index < maxIndex){
+			index++;
+
+			$('.controls span').removeClass('on');
+			$('#' + index).addClass('on');
+
+			changeColor();
+			getSample(index);
+		}
+
+	});	
+
 
 	$('#source').click(function(){
 		$('#modal').show();
@@ -49,6 +69,18 @@
 		$.get(domain + 'assets/sample-' + number + '.html', function(data){
 			$('#template').html(data);
 		});
+	};
+
+	function changeColor(static){
+		var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+
+		if(static){
+			$('.b-color').css({backgroundColor: randomColor});
+			$('.f-color').css({color: randomColor});
+		} else {
+			$('.b-color').animate({backgroundColor: randomColor}, 'slow');
+			$('.f-color').animate({color: randomColor}, 'slow');
+		}
 	};
 
 })();
