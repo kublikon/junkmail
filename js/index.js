@@ -1,5 +1,13 @@
 (function(){
 
+	// set random color
+	var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16),
+		code = '';
+
+	$('.b-color').css({backgroundColor: randomColor});
+	$('.f-color').css({color: randomColor});
+
+
 	$('.controls span').click(function(){
 		var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
@@ -11,10 +19,21 @@
 
 	$('#source').click(function(){
 		$('#modal').show();
+
+		$.get('../templates/simple-1.html', function(data){
+			code = data;
+		});
+
+		code = code.replace('<', '&lt;');
+		code = code.replace('>', '&gt;');
+		code = code.replace('</', '&lt;/');
+
+		$('#code').html(code);
 	});
 
 	$('#modal').click(function(){
 		$('#modal').hide();
 	});
+
 
 })();
