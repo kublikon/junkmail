@@ -20,7 +20,7 @@
 	$('#source').click(function(){
 		$('#modal').show();
 
-		$.get('../templates/simple-1.html', function(data){
+		$.get('http://kublikon.github.io/junkmail/templates/simple-1.html', function(data){
 			code = data;
 		});
 
