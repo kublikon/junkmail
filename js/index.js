@@ -35,6 +35,7 @@
 
 	$('#modal').click(function(){
 		$('#modal').hide();
+		$('#code').html('<i class="fa-spinner fa-spin"></i>');
 	});
 
 
