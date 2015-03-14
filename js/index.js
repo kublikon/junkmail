@@ -12,11 +12,12 @@
 	getSample(index);
 
 
-	$('.controls span').click(function(){
+	$('.controls span').click(function(data){
 		var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
 		$('.b-color').animate({backgroundColor: randomColor}, 'slow', function(){
-			$(this).addClass('on');
+			$('.controls span').removeClass('on');
+			$('#' + data.target.id).addClass('on');
 		});
 		$('.f-color').animate({color: randomColor}, 'slow');
 	});
@@ -24,7 +25,7 @@
 	$('#source').click(function(){
 		$('#modal').show();
 
-		$.get(domain + 'templates/simple-1.html', function(data){
+		$.get(domain + 'templates/simple-' + index + '.html', function(data){
 			code = data;
 
 			code = code.replace('<', '&lt;');
