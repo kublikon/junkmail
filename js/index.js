@@ -2,6 +2,7 @@
 
 	// set random color
 	var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16),
+		domain = 'http://kublikon.github.io/junkmail/';
 		code = '';
 
 	$('.b-color').css({backgroundColor: randomColor});
@@ -20,15 +21,16 @@
 	$('#source').click(function(){
 		$('#modal').show();
 
-		$.get('http://kublikon.github.io/junkmail/templates/simple-1.html', function(data){
+		$.get(domain + 'templates/simple-1.html', function(data){
 			code = data;
+
+			code = code.replace('<', '&lt;');
+			code = code.replace('>', '&gt;');
+			code = code.replace('</', '&lt;/');
+
+			$('#code').html(code);
 		});
-
-		code = code.replace('<', '&lt;');
-		code = code.replace('>', '&gt;');
-		code = code.replace('</', '&lt;/');
-
-		$('#code').html(code);
+		
 	});
 
 	$('#modal').click(function(){
