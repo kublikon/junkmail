@@ -2,10 +2,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Junkmail</title>
+    <title>Junkmail | Kublikon</title>
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/master.css" />
 </head>
 <body>
-	<div>
+	<div class="header">
+		<span class="logo">junk<b class="f-color">mail</b></span>
+		<div class="center">
+			<button class="source" id="source"><i class="fa-code"></i> source</button>
+		</div>
 	</div>
+	<div class="page b-color" id="page">
+		<div class="up"><i class="fa-angle-up"></i></div>
+
+		<div class="down"><i class="fa-angle-down"></i></div>
+
+		<div class="controls">
+			<span class="on"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+
+	<div class="modal" id="modal">
+		<div class="code">
+			<code>
+				tag
+			</code>
+			<span class="tag">HTML</span>
+			<div class="copy"><span><i class="fa-paperclip"></i> copy code</span></div>
+		</div>
+	</div>
+
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.color-2.1.2.min.js"></script>
+	<script src="js/index.js"></script>
 </body>
 </html>
