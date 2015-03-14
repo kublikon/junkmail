@@ -15,11 +15,14 @@
 	$('.controls span').click(function(data){
 		var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
-		$('.b-color').animate({backgroundColor: randomColor}, 'slow', function(){
-			$('.controls span').removeClass('on');
-			$('#' + data.target.id).addClass('on');
-		});
+		$('.controls span').removeClass('on');
+		$('#' + data.target.id).addClass('on');
+
+		$('.b-color').animate({backgroundColor: randomColor}, 'slow');
 		$('.f-color').animate({color: randomColor}, 'slow');
+
+		index = data.target.id;
+		getSample(index);
 	});
 
 	$('#source').click(function(){
