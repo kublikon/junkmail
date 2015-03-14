@@ -2,13 +2,14 @@
 
 	// set random color
 	var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16),
-		domain = 'http://kublikon.github.io/junkmail/';
+		domain = 'http://kublikon.github.io/junkmail/',
+		index = 1,
 		code = '';
 
 	$('.b-color').css({backgroundColor: randomColor});
 	$('.f-color').css({color: randomColor});
 
-	getSample(1);
+	getSample(index);
 
 
 	$('.controls span').click(function(){
