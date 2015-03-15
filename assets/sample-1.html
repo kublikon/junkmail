@@ -1,9 +1,10 @@
 <style>
-	.s-con { height:100%; padding:20px; background:#e0e0e0; }
+	.s-con { height:100%; padding:20px; box-sizing:border-box; background:#e0e0e0; }
 	.s-header { padding:20px; text-align:center; background:#b6b7b7; }
 	.s-header i { font-size:20px; color:#fff; }
 	.s-body { padding:20px; background:#fff; }
-	.s-body i { font-size:20px; color:#b6b7b7; }
+	.s-body .text { width:100%; padding:20px; border:2px dashed #e0e0e0; }
+	.s-body .text i { font-size:20px; color:#b6b7b7; }
 
 </style>
 
@@ -12,6 +13,8 @@
 		<i class="fa-image"></i>
 	</div>
 	<div class="s-body">
-		<i class="fa-align-left"></i>
+		<div class="s-text">
+			<i class="fa-align-left"></i>
+		</div>
 	</div>
 </div>
