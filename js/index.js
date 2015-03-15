@@ -47,6 +47,7 @@
 
 	$('#source').click(function(){
 		$('#modal').show();
+		$('.modal-back').show();
 
 		$.get(domain + 'templates/simple-' + index + '.html', function(data){
 			code = data;
@@ -60,8 +61,9 @@
 		
 	});
 
-	$('#modal').click(function(){
+	$('.modal-back').click(function(){
 		$('#modal').hide();
+		$('.modal-back').hide();
 		$('#code').html('<i class="fa-spinner fa-spin"></i>');
 	});
 
