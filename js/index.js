@@ -50,13 +50,51 @@
 		$('.modal-back').show();
 
 		$.get(domain + 'templates/simple-' + index + '.html', function(data){
-			code = data;
+			var tags = '',
+				indentCount = -1;
 
-			code = code.replace('<', '&lt;');
-			code = code.replace('>', '&gt;');
-			code = code.replace('</', '&lt;/');
+			data = data.split('<');
 
-			$('#code').html(code);
+			for (var t = 0; t < data.length; t++) {
+				if(data[t] != ''){
+					var indents = '';
+
+					data[t] = '<' + data[t];
+
+					// console.log(data[t], data[t].indexOf('</'));
+					// console.log(data[t], data[t].indexOf('>'));
+
+					if((t + 1) < data.length){
+
+						console.log(data[t+1].indexOf('</'));
+						console.log(data[t+1]);
+
+						if(data[t].indexOf('</') != -1){
+							indentCount--;						
+						} else if(data[t+1].indexOf('/') != -1){
+
+						} else if (data[t].indexOf('>') != -1) {
+							indentCount++;
+						}
+					}
+
+					for (var i = 0; i < indentCount; i++) {
+						indents += '&nbsp;';
+					};
+
+					data[t] = data[t].replace('<', '&lt;');
+					data[t] = data[t].replace('>', '&gt;');
+					data[t] = indents + data[t];
+					
+					tags += data[t] + '<br>';
+				}
+			};
+
+			data.forEach(function(t){
+				
+			});
+
+			$('#code').html(tags);
 		});
 		
 	});
