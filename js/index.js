@@ -95,6 +95,9 @@
 			$('.b-color').animate({backgroundColor: randomColor}, 'slow');
 			$('.f-color').animate({color: randomColor}, 'slow');
 		}
+
+		$('body').css({ '::selection': randomColor });
+		$('body').css({ '::-moz-selection': randomColor });
 	};
 
 	function formatCode(data){
