@@ -1,4 +1,4 @@
-# junkmail
+# [junkmail](http://kublikon.github.io/junkmail/)
 Free, simple HTML email templates that support:
 
 * Outlook
