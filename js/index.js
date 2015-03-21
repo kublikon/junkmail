@@ -107,8 +107,7 @@
 
 		data = data.split('<');
 		data.shift();
-
-		console.log(data.length);
+		$('ol').html('');
 
 		for (var t = 0; t < data.length; t++) {
 			data[t] = '<' + data[t];
