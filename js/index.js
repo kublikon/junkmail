@@ -136,6 +136,8 @@
 						data[t] = data[t].replace('&lt;td', '<span class="name">&lt;td</span>');
 						data[t] = data[t].replace('&lt;p', '<span class="name">&lt;p</span>');
 						data[t] = data[t].replace('&lt;a', '<span class="name">&lt;a</span>');
+						data[t] = data[t].replace('&lt;img', '<span class="name">&lt;img</span>');
+						data[t] = data[t].replace('&lt;h1', '<span class="name">&lt;h1</span>');
 
 						data[t] = data[t].replace('&lt;/html', '<span class="name">&lt;/html</span>');
 						data[t] = data[t].replace('&lt;/meta', '<span class="name">&lt;/meta</span>');
@@ -146,6 +148,7 @@
 						data[t] = data[t].replace('&lt;/td', '<span class="name">&lt;/td</span>');
 						data[t] = data[t].replace('&lt;/p', '<span class="name">&lt;/p</span>');
 						data[t] = data[t].replace('&lt;/a', '<span class="name">&lt;/a</span>');
+						data[t] = data[t].replace('&lt;/h1', '<span class="name">&lt;/h1</span>');
 
 						data[t] = data[t].replace('/&gt;', '<span class="name">/&gt;</span>');
 						data[t] = data[t].replace('&gt;', '<span class="name">&gt;</span>');
