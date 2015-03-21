@@ -5,7 +5,8 @@
 		index = 1,
 		maxIndex = 5,
 		code = '',
-		format = false;
+		format = true,
+		color = '';
 
 	changeColor(true);
 	getSample(index);
@@ -55,15 +56,13 @@
 
 	});	
 
-
 	$('#source').click(function(){
 		$('#modal').show();
 		$('.modal-back').show();
 
 		$.get(domain + 'templates/simple-' + index + '.html', function(data){
-			
-
 			$('#code').html(formatCode(data));
+			$('.name').css({color: color});
 		});
 		
 	});
@@ -88,6 +87,8 @@
 	function changeColor(static){
 		var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
+		color = randomColor;
+
 		if(static){
 			$('.b-color').css({backgroundColor: randomColor});
 			$('.f-color').css({color: randomColor});
@@ -107,6 +108,8 @@
 		data = data.split('<');
 		data.shift();
 
+		console.log(data.length);
+
 		for (var t = 0; t < data.length; t++) {
 			data[t] = '<' + data[t];
 		};
@@ -116,57 +119,48 @@
 				var indents = '',
 					br = '';
 
-				if((t + 1) < data.length){
-					if(format){
-
-						console.log(data[t].indexOf('<'), '<', data[t]);
-						console.log(data[t].indexOf('</'), '</');
-						console.log(data[t+1].indexOf('</'), '+</');
-						if(t-1 >= 0){
-							console.log(data[t-1].indexOf('</'), '-</');
-						}
-						console.log('---------------');
-
-						if(data[t].indexOf('</') == -1 && data[t+1].indexOf('</') == -1){
-							br = '<br>';
-							indentCount++;
-							console.log('> br');
-						} else if (data[t].indexOf('</') == -1 && data[t+1].indexOf('</') != -1){
-							indentCount++;
-							console.log('>');
-						} else if(data[t].indexOf('</') != -1 && data[t-1].indexOf('</') != -1) {
-							console.log('!');
-						}
-						// } else if (data[t].indexOf('</') != -1 && data[t-1].indexOf('/') == -1){
-						// 	// br = '<br>';
-						// 	indentCount--;
-						// }
-
-
-
-						// if(data[t].indexOf('</') != -1){
-						// 	br = '<br>';
-						// 	indentCount--;						
-						// } else if(data[t+1].indexOf('/') != -1){
-						// 	indentCount++;
-						// } else if (data[t-1].indexOf('/') == -1){
-
-						// } else if (data[t].indexOf('>') != -1) {
-						// 	br = '<br>';
-						// 	indentCount++;
-						// }
-					}
-				}
-
-				for (var i = 0; i < indentCount; i++) {
-					indents += '&nbsp;&nbsp;';
-				};
-
 				data[t] = data[t].replace('<', '&lt;');
 				data[t] = data[t].replace('>', '&gt;');
-				data[t] = indents + data[t];
+
+				if(format){
+
+					if(data[t].indexOf('&lt;!') != -1){
+						data[t] = '<span class="comment">' + data[t] + '</span>';
+					} else {
+						data[t] = data[t].replace('&lt;html', '<span class="name">&lt;html</span>');
+						data[t] = data[t].replace('&lt;meta', '<span class="name">&lt;meta</span>');
+						data[t] = data[t].replace('&lt;head', '<span class="name">&lt;head</span>');
+						data[t] = data[t].replace('&lt;body', '<span class="name">&lt;body</span>');
+						data[t] = data[t].replace('&lt;table', '<span class="name">&lt;table</span>');
+						data[t] = data[t].replace('&lt;tr', '<span class="name">&lt;tr</span>');
+						data[t] = data[t].replace('&lt;td', '<span class="name">&lt;td</span>');
+						data[t] = data[t].replace('&lt;p', '<span class="name">&lt;p</span>');
+						data[t] = data[t].replace('&lt;a', '<span class="name">&lt;a</span>');
+
+						data[t] = data[t].replace('&lt;/html', '<span class="name">&lt;/html</span>');
+						data[t] = data[t].replace('&lt;/meta', '<span class="name">&lt;/meta</span>');
+						data[t] = data[t].replace('&lt;/head', '<span class="name">&lt;/head</span>');
+						data[t] = data[t].replace('&lt;/body', '<span class="name">&lt;/body</span>');
+						data[t] = data[t].replace('&lt;/table', '<span class="name">&lt;/table</span>');
+						data[t] = data[t].replace('&lt;/tr', '<span class="name">&lt;/tr</span>');
+						data[t] = data[t].replace('&lt;/td', '<span class="name">&lt;/td</span>');
+						data[t] = data[t].replace('&lt;/p', '<span class="name">&lt;/p</span>');
+						data[t] = data[t].replace('&lt;/a', '<span class="name">&lt;/a</span>');
+
+						data[t] = data[t].replace('/&gt;', '<span class="name">/&gt;</span>');
+						data[t] = data[t].replace('&gt;', '<span class="name">&gt;</span>');
+
+						data[t] = data[t].replace('{{', '<span class="imp">{{</span>');
+						data[t] = data[t].replace('}}', '<span class="imp">}}</span>');
+					}
+
+					// if(data[t].indexOf('<') != -1 && data[t+1].indexOf('</') != -1){
+						$('ol').append('<li></li>');
+					// }
+					
+				}
 				
-				tags += data[t] + br;
+				tags += data[t];
 			}
 		};
 
